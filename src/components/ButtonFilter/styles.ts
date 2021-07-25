@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
 
   text: {
     fontFamily: theme.fonts.fontFamily,
-    color: theme.colors.textColor,
     fontSize: fr(11, 30),
   },
 });

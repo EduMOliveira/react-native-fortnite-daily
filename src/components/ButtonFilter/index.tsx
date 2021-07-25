@@ -9,15 +9,16 @@ type BtnProps = {
     name: string;
   };
 
-  onPress: () => void;
+  onPressItem: () => void;
+  isSelected: boolean;
 };
 
-export function ButtonFilter({ item, onPress }: BtnProps) {
+export function ButtonFilter({ item, onPressItem, isSelected }: BtnProps) {
   const { id, name } = item;
 
   return (
-    <TouchableOpacity key={id} style={styles.container} onPress={onPress}>
-      <Text style={styles.text}>{name}</Text>
+    <TouchableOpacity key={id} style={styles.container} onPress={onPressItem}>
+      <Text style={[styles.text, { color: isSelected ? "#576371" : "white" }]}>{name}</Text>
     </TouchableOpacity>
   );
 }

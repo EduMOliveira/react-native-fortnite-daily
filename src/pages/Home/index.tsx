@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { View, Text, SafeAreaView, FlatList, TouchableHighlight } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ActivityIndicator } from "react-native-paper";
 
 import Item from "../../components/Item";
 import { ButtonFilter } from "../../components/ButtonFilter";
@@ -16,13 +17,13 @@ import styles from "./styles";
 
 export function Home() {
   const mountedRef = useRef(true); // this is to ensure the useRef is unmounted
-  const flatList = useRef<FlatList>(null);
-
-  const [fullData, setFullData] = useState([]);
-  const [filter, setFilter] = useState("*");
-  const [filteredData, setFilteredData] = useState([]);
-  const [reload, setReload] = useState(false);
-  const [error, setError] = useState(false);
+  const flatList = useRef<FlatList>(null); // ref to flatList items
+  const [fullData, setFullData] = useState([]); // data from api
+  const [filter, setFilter] = useState("*"); // selected filter
+  const [filteredData, setFilteredData] = useState([]); // data after filtered
+  const [reload, setReload] = useState(false); // to reload data (useEffect get from api)
+  const [error, setError] = useState(false); // to show error if api call fails
+  const [isLoading, setIsLoading] = useState(false); // to show loading while api is loading
 
   useEffect(() => {
     const apiCall = async () => {
@@ -31,6 +32,7 @@ export function Home() {
         .then((res) => {
           // to remove msg of screen when GET response is ok
           setError(false);
+          setIsLoading(false);
 
           // ordering by Descend
           const orderByDesc = res.data.data.sort((a: any, b: any) => b.store.cost - a.store.cost);
@@ -45,6 +47,8 @@ export function Home() {
       setFilteredData(getData);
     };
 
+    setFilter("*"); // give color to selected item
+    setIsLoading(true);
     apiCall();
 
     return () => {
@@ -83,8 +87,8 @@ export function Home() {
     }
   }
 
+  // only to change useEffect dependence and reload API call
   function handleReloadIfError() {
-    // only to change useEffect dependence
     setReload(!reload);
   }
 
@@ -92,7 +96,7 @@ export function Home() {
     <LinearGradient colors={theme.gradients.home} style={styles.container}>
       <SafeAreaView>
         <Text style={styles.title}>Daily Store</Text>
-        <Timer />
+        <Timer timerReloadBtn={handleReloadIfError} />
 
         {error ? (
           <View style={styles.errorContainer}>
@@ -101,6 +105,8 @@ export function Home() {
               <MaterialCommunityIcons name="reload" size={40} color="white" />
             </TouchableHighlight>
           </View>
+        ) : isLoading ? (
+          <ActivityIndicator style={styles.errorContainer} size={50} animating={true} color={"#fff"} />
         ) : (
           <>
             <FlatList
@@ -108,9 +114,15 @@ export function Home() {
               data={filterButtonsData}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 10 }}
+              contentContainerStyle={{ paddingHorizontal: 10, flexGrow: 1, justifyContent: "center" }}
               style={{ flexGrow: 1, marginTop: 20, height: 50 }}
-              renderItem={(i) => <ButtonFilter onPress={() => setFilter(i.item.type)} item={i.item} />}
+              renderItem={(i) => (
+                <ButtonFilter
+                  onPressItem={() => setFilter(i.item.type)}
+                  item={i.item}
+                  isSelected={filter === i.item.type}
+                />
+              )}
             />
 
             <FlatList
@@ -131,6 +143,8 @@ export function Home() {
                   name={i.item.item.name}
                   price={i.item.store.cost}
                   type={i.item.item.series ? i.item.item.series : i.item.item.rarity}
+                  desc={i.item.item.description}
+                  rating={i.item.item.ratings.avgStars}
                 />
               )}
             />

@@ -8,26 +8,34 @@ const { wr } = useResponsive();
 const styles = StyleSheet.create({
   container: {
     width: wr(47),
-    height: wr(53),
+    height: wr(47),
     display: "flex",
     alignItems: "center",
+    marginBottom: 60,
   },
 
   imageContainer: {
     width: wr(34),
-    height: wr(34),
+    height: wr(33),
     justifyContent: "center",
     alignItems: "center",
     marginTop: -35,
   },
 
   image: {
-    width: "85%",
-    height: "90%",
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
 
   itemBg: {
     position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+
+  textsContainer: {
+    marginTop: wr(0.7),
   },
 
   skinName: {
@@ -35,7 +43,6 @@ const styles = StyleSheet.create({
     color: theme.colors.textColor,
     fontSize: wr(5),
     marginTop: 6,
-    marginBottom: 7,
   },
 
   priceContainer: {
