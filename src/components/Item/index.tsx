@@ -26,12 +26,21 @@ function Item({ marginB, img, name, price, type, desc, rating }: ItemProps) {
   const toggleModal = () => setModalVisible(!isModalVisible);
 
   return (
-    <TouchableOpacity onPress={toggleModal} style={[styles.container, { marginTop: marginB ? -34 : 0 }]}>
+    <TouchableOpacity
+      onPress={toggleModal}
+      style={[styles.container, { marginTop: marginB ? -34 : 0 }]}
+    >
       <View style={styles.itemBg}>
         <ItemClipPath type={type} />
       </View>
       <View style={[styles.imageContainer]}>
-        {isLoading && <ActivityIndicator style={{ position: "absolute" }} animating={true} color={"#fff"} />}
+        {isLoading && (
+          <ActivityIndicator
+            style={{ position: "absolute" }}
+            animating={true}
+            color={"#fff"}
+          />
+        )}
         <Image
           style={styles.image}
           source={{
@@ -41,7 +50,9 @@ function Item({ marginB, img, name, price, type, desc, rating }: ItemProps) {
         />
       </View>
       <View style={styles.textsContainer}>
-        <Text style={styles.skinName}>{name.length >= 13 ? name.slice(0, 13).concat("...") : name}</Text>
+        <Text style={styles.skinName}>
+          {name.length >= 13 ? name.slice(0, 13).concat("...") : name}
+        </Text>
 
         <View style={styles.priceContainer}>
           <Text style={styles.price}>{price}</Text>

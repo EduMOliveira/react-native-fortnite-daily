@@ -21,12 +21,29 @@ type ItemModalProps = {
   rating: number;
 };
 
-export function ItemModal({ isVisible, toggle, img, name, price, type, desc, rating }: ItemModalProps) {
+export function ItemModal({
+  isVisible,
+  toggle,
+  img,
+  name,
+  price,
+  type,
+  desc,
+  rating,
+}: ItemModalProps) {
   return (
     <Modal isVisible={isVisible} onBackdropPress={toggle}>
-      <LinearGradient colors={modalGradients[type]} style={styles.modalContainer}>
+      <LinearGradient
+        colors={modalGradients[type]}
+        style={styles.modalContainer}
+      >
         <TouchableOpacity onPress={toggle}>
-          <MaterialCommunityIcons name="close" size={30} color="white" style={styles.modalCloseIcon} />
+          <MaterialCommunityIcons
+            name="close"
+            size={30}
+            color="white"
+            style={styles.modalCloseIcon}
+          />
         </TouchableOpacity>
 
         <View style={styles.imageContainer}>
@@ -49,6 +66,7 @@ export function ItemModal({ isVisible, toggle, img, name, price, type, desc, rat
             count={5}
             defaultRating={rating}
             size={20}
+            //@ts-ignore
             unSelectedColor="#fff"
             showRating={false}
             isDisabled

@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import { View, Text, SafeAreaView, FlatList, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  TouchableHighlight,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ActivityIndicator } from "react-native-paper";
@@ -35,7 +41,9 @@ export function Home() {
           setIsLoading(false);
 
           // ordering by Descend
-          const orderByDesc = res.data.data.sort((a: any, b: any) => b.store.cost - a.store.cost);
+          const orderByDesc = res.data.data.sort(
+            (a: any, b: any) => b.store.cost - a.store.cost
+          );
           return orderByDesc;
         })
         .catch(() => {
@@ -63,7 +71,9 @@ export function Home() {
       setFilteredData(fullData);
     } else if (filter === "other") {
       // filter "fullData" and verify if (fullData.item.type) not(!) exists in "filterButtonsData" types.
-      const aux = fullData.filter((i: any) => !filterButtonsData.some((e) => i.item.type === e.type));
+      const aux = fullData.filter(
+        (i: any) => !filterButtonsData.some((e) => i.item.type === e.type)
+      );
       setFilteredData(aux);
     } else {
       // filter "fullData" and return only if the (fullData.item.type) is equals a "filter"
@@ -100,13 +110,24 @@ export function Home() {
 
         {error ? (
           <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>An error has been encountered. Try again!</Text>
-            <TouchableHighlight style={styles.errorIconContainer} onPress={handleReloadIfError} underlayColor="#83909e">
+            <Text style={styles.errorText}>
+              An error has been encountered. Try again!
+            </Text>
+            <TouchableHighlight
+              style={styles.errorIconContainer}
+              onPress={handleReloadIfError}
+              underlayColor="#83909e"
+            >
               <MaterialCommunityIcons name="reload" size={40} color="white" />
             </TouchableHighlight>
           </View>
         ) : isLoading ? (
-          <ActivityIndicator style={styles.errorContainer} size={50} animating={true} color={"#fff"} />
+          <ActivityIndicator
+            style={styles.errorContainer}
+            size={50}
+            animating={true}
+            color={"#fff"}
+          />
         ) : (
           <>
             <FlatList
@@ -114,7 +135,11 @@ export function Home() {
               data={filterButtonsData}
               horizontal
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 10, flexGrow: 1, justifyContent: "center" }}
+              contentContainerStyle={{
+                paddingHorizontal: 10,
+                flexGrow: 1,
+                justifyContent: "center",
+              }}
               style={{ flexGrow: 1, marginTop: 20, height: 50 }}
               renderItem={(i) => (
                 <ButtonFilter
@@ -139,10 +164,16 @@ export function Home() {
               renderItem={(i) => (
                 <Item
                   marginB={i.index % 2 === 0 ? false : true}
-                  img={i.item.item.images.featured ? i.item.item.images.featured : i.item.item.images.icon}
+                  img={
+                    i.item.item.images.featured
+                      ? i.item.item.images.featured
+                      : i.item.item.images.icon
+                  }
                   name={i.item.item.name}
                   price={i.item.store.cost}
-                  type={i.item.item.series ? i.item.item.series : i.item.item.rarity}
+                  type={
+                    i.item.item.series ? i.item.item.series : i.item.item.rarity
+                  }
                   desc={i.item.item.description}
                   rating={i.item.item.ratings.avgStars}
                 />

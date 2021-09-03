@@ -16,7 +16,9 @@ export function Timer({ timerReloadBtn }: TimerProps) {
 
   function handleTimer() {
     // get next utc day
-    let tomorrow = moment(new Date(), "YYYY-MM-DD HH:mm:ss").add(1, "d").tz("UTC");
+    let tomorrow = moment(new Date(), "YYYY-MM-DD HH:mm:ss")
+      .add(1, "d")
+      .tz("UTC");
     // set to 00:05:00 into next utc day to prevent "bug" when api reload data
     tomorrow.set({ hour: 0, minute: 5, second: 0, millisecond: 0 });
     // get date now in utc
@@ -33,7 +35,9 @@ export function Timer({ timerReloadBtn }: TimerProps) {
     const timer = setInterval(() => {
       const { diffFormatted, diffMs } = handleTimer();
 
-      diffMs <= 35000 ? setShowReload(true) : setTimerString(diffFormatted.toString());
+      diffMs <= 35000
+        ? setShowReload(true)
+        : setTimerString(diffFormatted.toString());
     }, 1000);
 
     return () => {
@@ -51,7 +55,8 @@ export function Timer({ timerReloadBtn }: TimerProps) {
           <TouchableOpacity onPress={timerReloadBtn}>
             <Text style={styles.timerText}>
               {"  "}
-              NOW! <MaterialCommunityIcons name="reload" size={18} color="white" />
+              NOW!{" "}
+              <MaterialCommunityIcons name="reload" size={18} color="white" />
             </Text>
           </TouchableOpacity>
         )}

@@ -10,7 +10,11 @@ type Props = {
 
 export function FActionButton({ onPress }: Props) {
   return (
-    <TouchableHighlight style={styles.btn} onPress={onPress} underlayColor="#83909e">
+    <TouchableHighlight
+      style={styles.btn}
+      onPress={onPress}
+      underlayColor="#83909e"
+    >
       <MaterialIcons name="keyboard-arrow-up" size={24} color="#fff" />
     </TouchableHighlight>
   );

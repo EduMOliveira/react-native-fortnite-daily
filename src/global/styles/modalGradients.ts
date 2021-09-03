@@ -1,4 +1,8 @@
-export const modalGradients: any = {
+type TObjGradient = {
+  [key: string]: string[];
+};
+
+export const modalGradients: TObjGradient = {
   common: ["#8E8B87", "#4E4A45"],
   dark: ["#D920C7", "#5C0E76"],
   epic: ["#B76EF0", "#511473"],

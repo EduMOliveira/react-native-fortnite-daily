@@ -18,7 +18,9 @@ export function ButtonFilter({ item, onPressItem, isSelected }: BtnProps) {
 
   return (
     <TouchableOpacity key={id} style={styles.container} onPress={onPressItem}>
-      <Text style={[styles.text, { color: isSelected ? "#576371" : "white" }]}>{name}</Text>
+      <Text style={[styles.text, { color: isSelected ? "#576371" : "white" }]}>
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 }

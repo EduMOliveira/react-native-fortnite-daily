@@ -12,8 +12,11 @@ function heightResponsive(height: number) {
 }
 
 function fontResponsive(height: number, maxHeight = 999) {
-  const calculatedHeight = PixelRatio.roundToNearestPixel((sHeight * height) / 100);
-  const finalHeight = calculatedHeight > maxHeight ? maxHeight : calculatedHeight;
+  const calculatedHeight = PixelRatio.roundToNearestPixel(
+    (sHeight * height) / 100
+  );
+  const finalHeight =
+    calculatedHeight > maxHeight ? maxHeight : calculatedHeight;
   return finalHeight;
 }
 

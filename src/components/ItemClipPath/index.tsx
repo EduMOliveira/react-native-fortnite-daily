@@ -18,14 +18,18 @@ import Uncommon from "../../assets/images/uncommon.svg";
 
 import { useResponsive } from "../../hooks/useResponsive";
 
-type IProps = {
+type TProps = {
   type: string;
 };
 
-export function ItemClipPath({ type }: IProps) {
+type TObjData = {
+  [key: string]: JSX.Element;
+};
+
+export function ItemClipPath({ type }: TProps) {
   const { wr } = useResponsive();
 
-  const data: any = {
+  const data: TObjData = {
     common: <Common width={wr(47)} height={wr(47)} />,
     dark: <Dark width={wr(47)} height={wr(47)} />,
     epic: <Epic width={wr(47)} height={wr(47)} />,
