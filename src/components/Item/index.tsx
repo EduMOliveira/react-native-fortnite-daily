@@ -34,20 +34,20 @@ function Item({ marginB, img, name, price, type, desc, rating }: ItemProps) {
         <ItemClipPath type={type} />
       </View>
       <View style={[styles.imageContainer]}>
-        {isLoading && (
-          <ActivityIndicator
-            style={{ position: "absolute" }}
-            animating={true}
-            color={"#fff"}
-          />
-        )}
         <Image
-          style={styles.image}
+          style={[styles.image]}
           source={{
             uri: img,
           }}
           onLoad={() => setIsLoading(false)}
         />
+        {isLoading && (
+          <ActivityIndicator
+            style={[{ position: "absolute" }]}
+            animating={true}
+            color="#fff"
+          />
+        )}
       </View>
       <View style={styles.textsContainer}>
         <Text style={styles.skinName}>
