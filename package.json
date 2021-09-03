@@ -23,15 +23,15 @@
     "react-native-modal": "^12.0.2",
     "react-native-paper": "^4.9.2",
     "react-native-ratings": "^8.1.0",
-    "react-native-svg": "12.1.1",
+    "react-native-svg": "^12.1.1",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@types/react": "~16.9.35",
-    "@types/react-native": "~0.63.2",
+    "@babel/core": "^7.15.4",
+    "@types/react": "^17.0.19",
+    "@types/react-native": "^0.64.13",
     "react-native-svg-transformer": "^0.14.3",
-    "typescript": "~4.0.0"
+    "typescript": "^4.4.2"
   },
   "private": true
 }
