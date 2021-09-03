@@ -12,11 +12,6 @@
 </p>
 
 <p align="center">
-	<img alt="Licence" src="https://img.shields.io/badge/licence-MIT-green?style=flat-square">
-</p>
-
-
-<p align="center">
  <a href="https://www.typescriptlang.org/" target="_blank">
  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/></a>
  <a href="https://reactnative.dev/" target="_blank"> 
@@ -77,9 +72,8 @@ yarn install
 yarn start
 ```
 
-## License
+##  
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/EduMOliveira/react-native-fortnite-daily/blob/master/LICENSE) file for details.
 
 <h3 align="left">Connect with me:</h3>  
 <p align="left">  
