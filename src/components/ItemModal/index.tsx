@@ -51,7 +51,7 @@ export function ItemModal({
         </View>
 
         <Text style={styles.title}>{name}</Text>
-        <Text style={styles.description}>"{desc}"</Text>
+        <Text style={styles.description}>{desc ? `"${desc}"` : ``}</Text>
 
         <View style={styles.priceContainer}>
           <Image style={styles.vbucksImg} source={vbucks} />
